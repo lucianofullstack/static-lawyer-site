@@ -1,0 +1,8 @@
+User-Agent: *
+Disallow: /cgi-bin/
+Disallow: /.well-known/
+Disallow: /dav/
+Disallow: /medios/
+Disallow: /web/
+Disallow: /defensadelconsumidor/wp-content/plugins/
+Sitemap: http://drpereira.com.ar/defensadelconsumidor/sitemap.xml

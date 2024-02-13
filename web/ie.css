@@ -1,0 +1,4 @@
+.view {position: absolute;display: none}
+.view.active {display: block}
+.hasPlaceholder {color: #fff}
+.circle h2 {padding: 0;margin: 0;border: 0;color: #fff;display: none;position: relative;top: 50%;-webkit-transform: translateY(200%);-ms-transform: translateY(200%);transform: translateY(200%)}

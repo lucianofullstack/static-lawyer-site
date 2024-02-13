@@ -1,0 +1,167 @@
+RewriteOptions inherit
+ServerSignature Off
+ExpiresActive On
+Header set last-modified "Sun Jul 18 00:32:50 EDT 2004"
+Header unset ETag
+FileETag None
+AddDefaultCharset utf-8
+Options -Indexes
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/svg+xml "access plus 1 year"
+ExpiresByType image/svg  "access plus 1 year"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/pdf "access plus 1 month"
+ExpiresByType text/x-javascript "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 year"
+ExpiresDefault "access plus 2 days"
+Redirect permanent /.well-known/carddav /dav/html/card.php
+
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks -MultiViews
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^www.drpereira.com.ar$
+RewriteRule ^(.*)$ "http\:\/\/drpereira\.com\.ar\/$1" [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME}\.html -f 
+RewriteRule ^(.*)$ $1.html
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ defensadelconsumidor/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^google1379d1849e1a415d\.html$ web/google.txt [L]
+RewriteRule ^eMsONZhxBigAMuYR0busEBdedi4\.html web/alexa.txt [L]
+RewriteRule ^pinterest-50048\.html web/pinterest.txt [L]
+RewriteRule ^favicon\.png web/favicon.png [L]
+
+</ifModule>
+<ifModule mod_gzip.c>
+  mod_gzip_on Yes
+  mod_gzip_dechunk Yes
+  mod_gzip_item_include file .(html?|txt|css|diz|php|pl)$
+  mod_gzip_item_include handler ^cgi-script$
+  mod_gzip_item_include mime ^text/.*
+  mod_gzip_item_include mime ^application/x-javascript.*
+  mod_gzip_item_exclude mime ^image/.*
+  mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+</ifmodule>
+<FilesMatch "\.(gif|jpg|jpeg|png|swf|css|js|html?|xml|txt|md)$">
+	SetOutputFilter DEFLATE
+</FilesMatch>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(-|\.|') [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(.*)(<|>|%3C|%3E)(.*) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(.*)(libwww-perl|libwwwperl|snoopy|wget|winhttp|python|nikto|scan|clshttp|archiver|loader|email|harvest|fetch|extract|grab|miner|suck|reaper|leach)(.*) [NC]
+RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Bot\ mailto:craftbot@yahoo.com [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^ChinaClaw [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Custo [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^DISCo [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Download\ Demon [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^eCatch [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^EirGrabber [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^EmailSiphon [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^EmailWolf [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Express\ WebPictures [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^ExtractorPro [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^EyeNetIE [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^FlashGet [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^GetRight [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^GetWeb! [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Go!Zilla [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Go-Ahead-Got-It [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^GrabNet [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Grafula [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^HMView [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} HTTrack [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Image\ Stripper [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Image\ Sucker [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} Indy\ Library [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^InterGET [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Internet\ Ninja [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} Java [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^JetCar [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^JOC\ Web\ Spider [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^larbin [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^LeechFTP [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^lwp:: [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^lwp- [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mass\ Downloader [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^MIDown\ tool [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mister\ PiX [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Navroad [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^NearSite [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^NetAnts [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^NetSpider [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Net\ Vampire [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^NetZIP [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Octopus [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Offline\ Explorer [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Offline\ Navigator [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^PageGrabber [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Papa\ Foto [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^pavuk [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^pcBrowser [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^RealDownload [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^ReGet [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SiteSnagger [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SmartDownload [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Schmozilla [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SuperBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^SuperHTTP [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Surfbot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^tAkeOut [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Teleport\ Pro [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^VoidEYE [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Web\ Image\ Collector [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Web\ Sucker [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebAuto [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebCopier [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^webcollage [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebFetch [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebGo\ IS [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebLeacher [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebReaper [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebSauger [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Website\ eXtractor [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Website\ Quester [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebStripper [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebWhacker [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebZIP [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Wget [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Widow [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WWWOFFLE [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Zeuse [NC]
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^.*$ - [F]
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+RewriteRule .*\.()$ - [F,NC]
+RewriteRule .*\.()$ - [F,NC]
